@@ -1,0 +1,48 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+nbproject
+
+# Folders to ignore
+.hg
+.svn
+.CVS
+intermediate
+publish
+build
+public
+
+# Editors
+*.sublime*
+*.vscode*
+.idea
+
+# Node build artifacts
+npm-debug.log
+node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+typings/
+lib/*.js
+test/*.js
+*.map

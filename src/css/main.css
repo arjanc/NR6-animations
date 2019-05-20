@@ -1,0 +1,102 @@
+@keyframes float {
+    0% {
+        transform: translate(0, 0px);
+    }
+    25% {
+        transform: translate(20px, 20px);
+    }
+    50% {
+        transform: translate(0px 40px);
+    }
+    75% {
+        transform: translate(-20px, 20px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+:root {
+    --float-delay: 6s;
+}
+
+.hero {
+    background-color: #96CAE3;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.grip-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 2242px;
+    height: 1295px;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+}
+
+.grip-container .grip-item .grip-image {
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: var(--float-delay);
+}
+
+.grip-container .grip-item.grip-1 {
+    transform: translate(-40px, -200px);
+}
+
+.grip-container .grip-item.grip-2 {
+    transform: translate(100px, -100px);
+}
+
+.grip-container .grip-item.grip-3 {
+    transform: translate(100px, -250px);
+}
+
+.grip-container .grip-item.grip-4 {
+    transform: translate(0px, 250px);
+}
+
+.grip-container .grip-item.grip-5 {
+    transform: translate(0px, 400px);
+}
+
+.grip-container .grip-item.grip-6 {
+    transform: translate(40px, 300px);
+}
+
+.grip-container .grip-item.grip-7 {
+    transform: translate(100px, 100px);
+}
+
+.grip-container .grip-item.grip-1 .grip-image {
+    top: 25px;
+    left: 0;
+}
+.grip-container .grip-item.grip-2 .grip-image {
+    top: 0;
+    left: 486px;
+}
+.grip-container .grip-item.grip-3 .grip-image {
+    top: 24px;
+    left: 1226px;
+}
+.grip-container .grip-item.grip-4 .grip-image {
+    top: 662px;
+    left: 209px;
+}
+.grip-container .grip-item.grip-5 .grip-image {
+    top: 710px;
+    left: 589px;
+}
+.grip-container .grip-item.grip-6 .grip-image {
+    top: 610px;
+    left: 1043px;
+}
+.grip-container .grip-item.grip-7 .grip-image {
+    top: 550px;
+    left: 1369px;
+}
