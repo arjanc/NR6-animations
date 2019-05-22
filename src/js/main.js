@@ -8,8 +8,7 @@ var originalGripSize = {
 var gripItems = document.querySelectorAll('.grip-item .grip-image');
 for (var i=0; i < gripItems.length; i++) {
     var floatTime = Math.floor(Math.random() * 6) + 1;
-    console.log(floatTime);
-    gripItems[i].style.setProperty('--float-delay', floatTime +'s');
+    gripItems[i].style.setProperty('--float-delay', -floatTime +'s');
 }
 
 function resizeGrip() {
@@ -22,7 +21,7 @@ function resizeGrip() {
         wrapper.getBoundingClientRect().height / originalGripSize.height,
     );
 
-    gripContainer.style.transform = "translate(-50%, -50%) " + "scale(" + scale + ")";
+    gripContainer.style.transform = "translate(-50%, -50%) " + "scale(" + (scale * 0.6) + ")";
 }
 
 handleResize = function() {
@@ -40,7 +39,28 @@ handleResize = function() {
     });
 };
 
+initScrollMagic = function() {
+    // initialize ScrollMagic
+    var controller = new ScrollMagic.Controller();
+
+    // Build scenes.
+    new ScrollMagic.Scene({
+        triggerElement: '#sec1',
+    })
+        .setClassToggle('#grip-container', 'sticked') // add class
+        .addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
+
+    new ScrollMagic.Scene({
+        triggerElement: '#sec2',
+    })
+        .setClassToggle('#hero', 'nonFixed') // add class
+        .addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
+};
+
 window.onload = function() {
+    initScrollMagic();
     resizeGrip();
     window.addEventListener('resize', this.handleResize);
 }
