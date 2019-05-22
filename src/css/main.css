@@ -42,6 +42,17 @@
     z-index: 1;
 }
 
+.hero .hero-title {
+    align-self: flex-end;
+    color: #ffffff;
+    width: 100%;
+    font-size: 150px;
+    margin: 0;
+    margin-bottom: -200px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 .hero.nonFixed {
     position: relative;
     top: auto;
@@ -49,6 +60,8 @@
 }
 
 .grip-container {
+    display: flex;
+    padding-bottom: 200px;
     position: relative;
     top: 50%;
     left: 50%;
@@ -56,6 +69,7 @@
     height: 1295px;
     transform: translate(-50%, -50%);
     transform-origin: center center;
+    z-index: 1;
 }
 
 .grip-container.floating .grip-item .grip-image {
@@ -98,19 +112,19 @@
 }
 
 .grip-container.floating .grip-item.grip-4 {
-    transform: translate(0px, 250px);
+    transform: translate(-400px, 50px);
 }
 
 .grip-container.floating .grip-item.grip-5 {
-    transform: translate(0px, 400px);
+    transform: translate(-100px, 100px);
 }
 
 .grip-container.floating .grip-item.grip-6 {
-    transform: translate(40px, 300px);
+    transform: translate(100px, 100px);
 }
 
 .grip-container.floating .grip-item.grip-7 {
-    transform: translate(100px, 100px);
+    transform: translate(500px, 0px);
 }
 
 .grip-container .grip-item.grip-1 .grip-image {

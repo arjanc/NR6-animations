@@ -1,7 +1,7 @@
-var resizeTimeout;
+var resizeTimeout, controller;
 var originalGripSize = {
-    width: 2242,
-    height: 1295,
+    width: 2242 + 500,
+    height: 1295 + 500,
 };
 
 
@@ -21,7 +21,7 @@ function resizeGrip() {
         wrapper.getBoundingClientRect().height / originalGripSize.height,
     );
 
-    gripContainer.style.transform = "translate(-50%, -50%) " + "scale(" + (scale * 0.6) + ")";
+    gripContainer.style.transform = "translate(-50%, -50%) " + "scale(" + (scale * 1) + ")";
 }
 
 handleResize = function() {
@@ -35,13 +35,13 @@ handleResize = function() {
 
         // Run our resize functions
         resizeGrip();
-
+        controller.update(true);
     });
 };
 
 initScrollMagic = function() {
     // initialize ScrollMagic
-    var controller = new ScrollMagic.Controller();
+    controller = new ScrollMagic.Controller();
 
     // Build scenes.
     new ScrollMagic.Scene({
