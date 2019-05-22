@@ -57,6 +57,13 @@ initScrollMagic = function() {
         .setClassToggle('#hero', 'nonFixed') // add class
         .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
+
+    new ScrollMagic.Scene({
+        triggerElement: '#sec3',
+    })
+        .setClassToggle('#main', 'blue') // add class
+        .addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
 };
 
 window.onload = function() {
