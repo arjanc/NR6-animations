@@ -55,7 +55,6 @@ initScrollMagic = function() {
         triggerElement: '#sec3',
     })
         .setClassToggle('#faces', 'show') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
