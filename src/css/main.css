@@ -73,7 +73,7 @@ main.blue {
     width: 100%;
     font-size: 150px;
     margin: 0;
-    margin-bottom: -200px;
+    padding-bottom: 200px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -85,16 +85,20 @@ main.blue {
 }
 
 .grip-container {
-    display: flex;
-    padding-bottom: 200px;
+    box-sizing: border-box;
+    display: inline-block;
     position: relative;
     top: 50%;
     left: 50%;
-    width: 2242px;
-    height: 1295px;
     transform: translate(-50%, -50%);
     transform-origin: center center;
     z-index: 1;
+}
+.grip-container-inner {
+    display: block;
+    width: 2242px;
+    height: 1295px;
+    padding: 500px;
 }
 
 .grip-container.floating .grip-item .grip-image {
