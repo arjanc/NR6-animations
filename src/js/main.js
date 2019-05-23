@@ -48,21 +48,18 @@ initScrollMagic = function() {
         triggerElement: '#sec1',
     })
         .setClassToggle('#grip-container', 'sticked') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
         triggerElement: '#sec2',
     })
         .setClassToggle('#hero', 'nonFixed') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
         triggerElement: '#sec3',
     })
         .setClassToggle('#main', 'blue') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 };
 
