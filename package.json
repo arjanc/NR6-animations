@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "parcel-bundler": "^1.12.3"
+  },
+  "name": "NR6-animations",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:arjanc/NR6-animations.git",
+  "author": "Arjan Ceelen <arjan@celar.nl>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  }
+}

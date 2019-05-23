@@ -1,15 +1,15 @@
-var resizeTimeout, controller, originalGripSize;
+let resizeTimeout, controller, originalGripSize;
 
-var gripItems = document.querySelectorAll('.grip-item .grip-image');
-for (var i=0; i < gripItems.length; i++) {
-    var floatTime = Math.floor(Math.random() * 6) + 1;
+const gripItems = document.querySelectorAll('.grip-item .grip-image');
+for (let i=0; i < gripItems.length; i++) {
+    const floatTime = Math.floor(Math.random() * 6) + 1;
     gripItems[i].style.setProperty('--float-delay', -floatTime +'s');
 }
 
 function resizeGrip() {
-    var scale, origin;
-    var wrapper = document.getElementsByClassName('hero')[0];
-    var gripContainer = document.getElementsByClassName('grip-container')[0];
+    let scale;
+    const wrapper = document.getElementsByClassName('hero')[0];
+    const gripContainer = document.getElementsByClassName('grip-container')[0];
 
     scale = Math.min(
         wrapper.getBoundingClientRect().width / originalGripSize.width,
@@ -56,19 +56,25 @@ initScrollMagic = function() {
     new ScrollMagic.Scene({
         triggerElement: '#sec3',
     })
-        .setClassToggle('#main', 'blue') // add class
+        .setClassToggle('#faces', 'show') // add class
         .addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
+
+    new ScrollMagic.Scene({
+        triggerElement: '#sec3',
+    })
+        .setClassToggle('#main', 'blue') // add class
         .addTo(controller);
 };
 
 window.onload = function() {
-    var gripImages = document.querySelectorAll('.grip-item img');
-    var imagesLoaded = 0;
-    for (var i=0; i < gripImages.length; i++) {
+    const gripImages = document.querySelectorAll('.grip-item img');
+    let imagesLoaded = 0;
+    for (let i=0; i < gripImages.length; i++) {
 
         // create new image object
         // so we can add a listener to it.
-        var img = new Image();
+        const img = new Image();
             img.src = gripImages[i].src;
 
         img.addEventListener('load', () => {
@@ -84,6 +90,7 @@ window.onload = function() {
                 resizeGrip();
                 window.addEventListener('resize', this.handleResize);
 
+                document.querySelector('.grip-container-inner').classList.remove('loading');
             }
         });
     }
