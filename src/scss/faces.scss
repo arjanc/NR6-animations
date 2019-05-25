@@ -1,0 +1,49 @@
+// --- FACES --- //
+
+$faces: 20;
+
+.faces {
+  margin: 0 auto;
+  max-width: 70vw;
+
+  padding: 10vh 0 0 0;
+}
+.faces svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.faces svg .face {
+  transform: scale(0);
+  transform-origin: 50% 50%;
+  transition: transform 250ms ease-in;
+}
+
+.faces.show svg .face {
+  transform: scale(1);
+}
+
+.faces-title {
+  color: white;
+  width: 80vw;
+  margin: 20vh auto 0;
+}
+
+@for $i from 1 through $faces {
+  .faces svg .face-#{$i} {
+    transition-delay: 50ms * $i;
+  }
+}
+
+@for $i from 1 through $faces {
+  .faces.show svg .face-#{$i} {
+    transition-delay: 50ms * $i;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .faces {
+    max-width: none;
+    padding: 10vh 115px 0;
+  }
+}

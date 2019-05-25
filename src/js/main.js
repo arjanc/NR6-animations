@@ -1,3 +1,5 @@
+import './../scss/main.scss';
+
 let resizeTimeout, controller, originalGripSize;
 
 const gripItems = document.querySelectorAll('.grip-item .grip-image');
@@ -19,7 +21,7 @@ function resizeGrip() {
     gripContainer.style.transform = "translate(-50%, -50%) " + "scale(" + (scale * 1) + ")";
 }
 
-handleResize = function() {
+const handleResize = function() {
     // If there's a timer, cancel it
     if (resizeTimeout) {
         window.cancelAnimationFrame(resizeTimeout);
@@ -34,7 +36,7 @@ handleResize = function() {
     });
 };
 
-initScrollMagic = function() {
+const initScrollMagic = function() {
     // initialize ScrollMagic
     controller = new ScrollMagic.Controller();
 
