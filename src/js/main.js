@@ -172,7 +172,6 @@ const initScrollMagic = function() {
         triggerElement: '#sec3',
     })
         .setClassToggle('#main', 'blue') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     scene4 = new ScrollMagic.Scene({
@@ -180,7 +179,6 @@ const initScrollMagic = function() {
         duration: `${getScene4Duration()}px`,
     })
         .setClassToggle('#faces-2', 'fixed') // add classes
-        .addIndicators() // add indicators (requires plugin)
         .on('update', (event) => {
             switch(event.type) {
                 case 'update':

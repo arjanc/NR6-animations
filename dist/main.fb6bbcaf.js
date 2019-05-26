@@ -320,28 +320,23 @@ var initScrollMagic = function initScrollMagic() {
   new ScrollMagic.Scene({
     triggerElement: '#sec1'
   }).setClassToggle('#grip-container', 'sticked') // add class
-  .addIndicators() // add indicators (requires plugin)
   .addTo(controller);
   new ScrollMagic.Scene({
     triggerElement: '#sec2'
   }).setClassToggle('#hero', 'nonFixed') // add class
-  .addIndicators() // add indicators (requires plugin)
   .addTo(controller);
   new ScrollMagic.Scene({
     triggerElement: '#sec3'
   }).setClassToggle('#faces', 'show') // add class
-  .addIndicators() // add indicators (requires plugin)
   .addTo(controller);
   new ScrollMagic.Scene({
     triggerElement: '#sec3'
   }).setClassToggle('#main', 'blue') // add class
-  .addIndicators() // add indicators (requires plugin)
   .addTo(controller);
   scene4 = new ScrollMagic.Scene({
     triggerElement: '#sec4',
     duration: "".concat(getScene4Duration(), "px")
   }).setClassToggle('#faces-2', 'fixed') // add classes
-  .addIndicators() // add indicators (requires plugin)
   .on('update', function (event) {
     switch (event.type) {
       case 'update':
@@ -440,7 +435,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62596" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55612" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
