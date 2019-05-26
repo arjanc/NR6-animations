@@ -5,6 +5,7 @@ $faces: 20;
 .wrapper {
   max-width: 80%;
   margin: 0 auto;
+  position: relative;
 }
 
 .faces-wrapper {
@@ -24,8 +25,19 @@ $faces: 20;
 
 .faces-container {
   width: 100%;
-  padding-bottom: (566/823) * 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.faces-placeholder {
+  max-width: 823px;
   position: relative;
+
+  .placeholder-inner {
+    padding-bottom: (566/823) * 100%;
+  }
 }
 
   .faces {
@@ -38,7 +50,6 @@ $faces: 20;
     }
 
     &.fixed {
-      //max-width: 80vw;
       padding-bottom: ((566/823) * 100%) * 0.8;
       position: fixed;
       left: 50%;
@@ -48,10 +59,9 @@ $faces: 20;
     svg {
       width: 100%;
       height: 100%;
-      transform: translateX(-50%);
       position: absolute;
       top: 0;
-      left: 50%;
+      left: 0;
 
       .face {
         transform: scale(0);
@@ -62,10 +72,16 @@ $faces: 20;
     }
   }
 
-.faces-title {
+.faces-subtitle {
   color: white;
   width: 80%;
   margin: 20vh auto 0;
+}
+.faces-title {
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 100px;
 }
 
 @for $i from 1 through $faces {
@@ -123,99 +139,3 @@ $faces: 20;
     top: 100px;
   }
 }
-
-//.faces-wrapper {
-//  max-width: 80vw;
-//  margin: 0 auto;
-//  position: relative;
-//}
-//
-//.faces-container {
-//  width: 100%;
-//  padding-bottom: (566/823) * 100%;
-//  position: relative;
-//
-//  .faces {
-//    width: 100%;
-//    padding-bottom: (566/823) * 100%;
-//    position: absolute;
-//    top: 0;
-//    left: 0;
-//
-//    &.fixed {
-//      max-width: 80vw;
-//      padding-bottom: ((566/823) * 100%) * 0.8;
-//      position: fixed;
-//      left: 50%;
-//      transform: translateX(-50%);
-//    }
-//
-//    svg {
-//      width: 100%;
-//      height: 100%;
-//      transform: translateX(-50%);
-//      position: absolute;
-//      top: 0;
-//      left: 50%;
-//
-//      .face {
-//        transform: scale(0);
-//        transform-origin: 50% 50%;
-//        transition: transform 250ms ease-in;
-//
-//      }
-//    }
-//  }
-//
-//  &.show {
-//    .faces {
-//      svg {
-//        .face {
-//          transform: scale(1);
-//        }
-//      }
-//    }
-//  }
-//}
-//
-//.faces-title {
-//  color: white;
-//  width: 80vw;
-//  margin: 20vh auto 0;
-//}
-//
-//@for $i from 1 through $faces {
-//  .faces-container .faces svg .face-#{$i} {
-//    transition-delay: 50ms * $i;
-//  }
-//}
-//
-//@for $i from 1 through $faces {
-//  .faces-container.show .faces svg .face-#{$i} {
-//    transition-delay: 50ms * $i;
-//  }
-//}
-//
-//.faces-bottom {
-//    position: absolute;
-//    top: 5vh;
-//    left: 0;
-//    width: 100%;
-//    height: 100%;
-//    display: none;
-//
-//  .face-3 {
-//    transform: rotate(37deg);
-//    transform-origin: 50% 50%;
-//    transition: none;
-//  }
-//  .face-16 {
-//    transform: rotate(-26deg);
-//    transform-origin: 50% 50%;
-//    transition: none;
-//  }
-//
-//  &.active {
-//    display: block;
-//  }
-//}

@@ -380,32 +380,31 @@ main.blue {
 /**
     --- SCENES ---
 */
+.scene {
+  min-height: 800px; }
+
 .scene-1 {
-  /*min-height: 250vh;*/
   height: 200vh;
   position: relative; }
-
-.scene-1 .spacer-1 {
-  min-height: 100vh; }
-
-.scene-1 .spacer-2 {
-  height: 50vh; }
+  .scene-1 .spacer-1 {
+    min-height: 100vh; }
+  .scene-1 .spacer-2 {
+    height: 75vh; }
+  .scene-1 .spacer-3 {
+    margin-top: -25vh;
+    position: absolute; }
 
 .scene-2 {
   display: inline-block;
   width: 100%;
-  height: 100vh;
   text-align: center;
+  padding-bottom: 48.14095%;
   position: relative; }
   .scene-2 .spacer-4 {
-    height: 0;
+    height: 100%;
     position: absolute;
     top: 50vh;
     left: 0; }
-
-.scene-2 .spacer-3 {
-  margin-top: -25vh;
-  position: absolute; }
 
 .scene-3 {
   box-sizing: border-box;
@@ -422,31 +421,17 @@ main.blue {
   min-height: 100vh;
   position: relative; }
 
-@media only screen and (min-width: 1024px) {
-  .scene-3 {
-    min-height: 80vh; }
-    .scene-3 .scene-3-title {
-      padding-top: 5vh; } }
-
-@media only screen and (min-width: 1200px) {
-  .scene {
-    min-height: 1000px; }
-    .scene.scene-1 {
-      height: 2000px; }
-      .scene.scene-1 .spacer-1 {
-        min-height: 1000px; }
-      .scene.scene-1 .spacer-2 {
-        height: 500px; }
-    .scene.scene-2 {
-      height: 1200px; }
-      .scene.scene-2 .spacer-3 {
-        margin-top: -250px; }
-      .scene.scene-2 .spacer-4 {
-        top: calc(412px + (1200px - 100vh)); }
-    .scene.scene-3 .spacer-5 {
-      top: calc(50vh - 500px); }
-    .scene.scene-3 .scene-3-title {
-      padding-top: 100px; } }
+@media only screen and (max-height: 800px) {
+  .scene.scene-1 {
+    height: 1600px; }
+    .scene.scene-1 .spacer-1 {
+      min-height: 800px; }
+    .scene.scene-1 .spacer-2 {
+      height: 400px; }
+  .scene.scene-3 {
+    min-height: 400px; }
+  .scene.scene-4 {
+    min-height: 1600px; } }
 
 /**
     --- HERO ---
@@ -464,7 +449,7 @@ main.blue {
   align-self: flex-end;
   color: #ffffff;
   width: 100%;
-  font-size: 150px;
+  font-size: 400px;
   margin: 0;
   padding-bottom: 200px;
   text-align: center;
@@ -473,7 +458,11 @@ main.blue {
 .hero.nonFixed {
   position: relative;
   top: auto;
-  bottom: 50vh; }
+  bottom: 75vh; }
+
+@media only screen and (max-height: 800px) {
+  .hero.nonFixed {
+    bottom: 600px; } }
 
 .grip-container {
   box-sizing: border-box;
@@ -569,7 +558,8 @@ main.blue {
 
 .wrapper {
   max-width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  position: relative; }
 
 .faces-wrapper {
   margin: 0 auto;
@@ -579,8 +569,16 @@ main.blue {
 
 .faces-container {
   width: 100%;
-  padding-bottom: 68.77278%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.faces-placeholder {
+  max-width: 823px;
   position: relative; }
+  .faces-placeholder .placeholder-inner {
+    padding-bottom: 68.77278%; }
 
 .faces.faces-overlay {
   position: absolute;
@@ -597,19 +595,24 @@ main.blue {
 .faces svg {
   width: 100%;
   height: 100%;
-  transform: translateX(-50%);
   position: absolute;
   top: 0;
-  left: 50%; }
+  left: 0; }
   .faces svg .face {
     transform: scale(0);
     transform-origin: 50% 50%;
     transition: transform 250ms ease-in; }
 
-.faces-title {
+.faces-subtitle {
   color: white;
   width: 80%;
   margin: 20vh auto 0; }
+
+.faces-title {
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 100px; }
 
 .faces-container .faces svg .face-1 {
   transition-delay: 50ms; }

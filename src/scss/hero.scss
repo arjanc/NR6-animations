@@ -16,7 +16,7 @@
   align-self: flex-end;
   color: #ffffff;
   width: 100%;
-  font-size: 150px;
+  font-size: 400px;
   margin: 0;
   padding-bottom: 200px;
   text-align: center;
@@ -26,7 +26,13 @@
 .hero.nonFixed {
   position: relative;
   top: auto;
-  bottom: 50vh;
+  bottom: 75vh;
+}
+
+@media only screen and (max-height: 800px) {
+  .hero.nonFixed {
+    bottom: 600px;
+  }
 }
 
 .grip-container {

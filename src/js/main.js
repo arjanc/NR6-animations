@@ -77,12 +77,24 @@ const faceCoordinates = [
     },
 ];
 
-
+const facesMainElement = document.querySelector('#faces');
+const facesContainerElement = document.querySelector('.faces-container');
+const facesPlaceholder = document.querySelector('.faces-placeholder');
+const facesTitleElement = document.querySelector('.faces-title');
 
 const gripItems = document.querySelectorAll('.grip-item .grip-image');
 for (let i=0; i < gripItems.length; i++) {
     const floatTime = Math.floor(Math.random() * 6) + 1;
     gripItems[i].style.setProperty('--float-delay', -floatTime +'s');
+}
+
+
+function getFacesHeight() {
+    return (facesTitleElement.getBoundingClientRect().y + facesTitleElement.getBoundingClientRect().height) - facesMainElement.getBoundingClientRect().y + facesPlaceholder.getBoundingClientRect().height;
+}
+
+function getScene4Duration() {
+    return getFacesHeight() - (facesPlaceholder.getBoundingClientRect().height * 1.5);
 }
 
 function resizeGrip() {
@@ -111,16 +123,13 @@ const handleResize = function() {
         resizeGrip();
         controller.update(true);
 
+        // Resize faces container.
+        const newFacesHeight = getFacesHeight();
 
-        if (getDocumentWidth() > 1200) {
-            const duration = (getDocumentHeight() < 1200) ? (getDocumentHeight() / 1200) * 100: 120;
-            console.log('duration', duration);
-            scene4.duration(`${duration}%`);
-            document.querySelector('.spacer-4').style.top = (getDocumentHeight() > 825) ? `${(825/2) + ((getDocumentHeight() - 825)/2)}px`: `${825 / 2}px`;
-        } else {
-            scene4.duration('90%');
-            document.querySelector('.spacer-4').style.top = '';
-        }
+        facesContainerElement.style.height = `${newFacesHeight}px`;
+        facesContainerElement.querySelector('svg').setAttribute('viewBox', `0 0 823 ${newFacesHeight}`);
+
+        scene4.duration(`${getScene4Duration()}px`);
     });
 };
 
@@ -169,20 +178,23 @@ const initScrollMagic = function() {
         .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
-    const duration = (getDocumentHeight() < 1200) ? (getDocumentHeight() / 1200) * 100: 120;
     scene4 = new ScrollMagic.Scene({
         triggerElement: '#sec4',
-        duration: (getDocumentWidth() > 1200) ? `${duration}%` : '90%',
+        duration: `${getScene4Duration()}px`,
     })
         .setClassToggle('#faces-2', 'fixed') // add classes
         .addIndicators() // add indicators (requires plugin)
         .on('update', (event) => {
             switch(event.type) {
                 case 'update':
+
+                    // calculate total distance to face-title is visible
+                    const faceYDifference = document.querySelector('.faces-container').getBoundingClientRect().height - (document.querySelector('.faces-placeholder').getBoundingClientRect().height * 1.5);
+                    const scale = 823 / document.querySelector('.faces-placeholder').getBoundingClientRect().width;
+
                     let percent = 100 / (event.endPos - event.startPos) * (event.scrollPos - event.startPos);
-                    // let percent = 100 / ((event.endPos - event.startPos) / 2) * (event.scrollPos - event.startPos);
+
                     if (percent < 0) {
-                        document.querySelector('#faces-2').style.top = '';
                         // reset coordinates of faces
                         faceCoordinates.map((face) => {
                             face.element.setAttribute('x', face.x);
@@ -194,11 +206,10 @@ const initScrollMagic = function() {
                         if (percent > 100) {
                             percent = 100;
                         }
-                        document.querySelector('#faces-2').style.top = `${(15 / 100) * percent}vh`;
 
                         faceCoordinates.map((face) => {
                             const positionX = face.x + (((face.endX - face.x) / 100) * percent);
-                            const positionY = face.y + (((face.endY - face.y) / 100) * percent);
+                            const positionY = face.y + (((face.endY + (faceYDifference * scale) - face.y) / 100) * percent);
                             face.element.setAttribute('x', positionX);
                             face.element.setAttribute('y', positionY);
                             if (face.endRotate !== 0) {
@@ -213,13 +224,6 @@ const initScrollMagic = function() {
                     break;
             }
         })
-        .addTo(controller);
-
-        new ScrollMagic.Scene({
-            triggerElement: '#sec5',
-        })
-        .setClassToggle('.faces-bottom', 'active') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 };
 

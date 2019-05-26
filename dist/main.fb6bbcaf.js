@@ -259,11 +259,23 @@ var faceCoordinates = [{
   endY: 320,
   endRotate: 0
 }];
+var facesMainElement = document.querySelector('#faces');
+var facesContainerElement = document.querySelector('.faces-container');
+var facesPlaceholder = document.querySelector('.faces-placeholder');
+var facesTitleElement = document.querySelector('.faces-title');
 var gripItems = document.querySelectorAll('.grip-item .grip-image');
 
 for (var i = 0; i < gripItems.length; i++) {
   var floatTime = Math.floor(Math.random() * 6) + 1;
   gripItems[i].style.setProperty('--float-delay', -floatTime + 's');
+}
+
+function getFacesHeight() {
+  return facesTitleElement.getBoundingClientRect().y + facesTitleElement.getBoundingClientRect().height - facesMainElement.getBoundingClientRect().y + facesPlaceholder.getBoundingClientRect().height;
+}
+
+function getScene4Duration() {
+  return getFacesHeight() - facesPlaceholder.getBoundingClientRect().height * 1.5;
 }
 
 function resizeGrip() {
@@ -284,17 +296,12 @@ var handleResize = function handleResize() {
   resizeTimeout = window.requestAnimationFrame(function () {
     // Run our resize functions
     resizeGrip();
-    controller.update(true);
+    controller.update(true); // Resize faces container.
 
-    if (getDocumentWidth() > 1200) {
-      var duration = getDocumentHeight() < 1200 ? getDocumentHeight() / 1200 * 100 : 120;
-      console.log('duration', duration);
-      scene4.duration("".concat(duration, "%"));
-      document.querySelector('.spacer-4').style.top = getDocumentHeight() > 825 ? "".concat(825 / 2 + (getDocumentHeight() - 825) / 2, "px") : "".concat(825 / 2, "px");
-    } else {
-      scene4.duration('90%');
-      document.querySelector('.spacer-4').style.top = '';
-    }
+    var newFacesHeight = getFacesHeight();
+    facesContainerElement.style.height = "".concat(newFacesHeight, "px");
+    facesContainerElement.querySelector('svg').setAttribute('viewBox', "0 0 823 ".concat(newFacesHeight));
+    scene4.duration("".concat(getScene4Duration(), "px"));
   });
 };
 
@@ -330,20 +337,21 @@ var initScrollMagic = function initScrollMagic() {
   }).setClassToggle('#main', 'blue') // add class
   .addIndicators() // add indicators (requires plugin)
   .addTo(controller);
-  var duration = getDocumentHeight() < 1200 ? getDocumentHeight() / 1200 * 100 : 120;
   scene4 = new ScrollMagic.Scene({
     triggerElement: '#sec4',
-    duration: getDocumentWidth() > 1200 ? "".concat(duration, "%") : '90%'
+    duration: "".concat(getScene4Duration(), "px")
   }).setClassToggle('#faces-2', 'fixed') // add classes
   .addIndicators() // add indicators (requires plugin)
   .on('update', function (event) {
     switch (event.type) {
       case 'update':
-        var percent = 100 / (event.endPos - event.startPos) * (event.scrollPos - event.startPos); // let percent = 100 / ((event.endPos - event.startPos) / 2) * (event.scrollPos - event.startPos);
+        // calculate total distance to face-title is visible
+        var faceYDifference = document.querySelector('.faces-container').getBoundingClientRect().height - document.querySelector('.faces-placeholder').getBoundingClientRect().height * 1.5;
+        var scale = 823 / document.querySelector('.faces-placeholder').getBoundingClientRect().width;
+        var percent = 100 / (event.endPos - event.startPos) * (event.scrollPos - event.startPos);
 
         if (percent < 0) {
-          document.querySelector('#faces-2').style.top = ''; // reset coordinates of faces
-
+          // reset coordinates of faces
           faceCoordinates.map(function (face) {
             face.element.setAttribute('x', face.x);
             face.element.setAttribute('y', face.y);
@@ -356,10 +364,9 @@ var initScrollMagic = function initScrollMagic() {
             percent = 100;
           }
 
-          document.querySelector('#faces-2').style.top = "".concat(15 / 100 * percent, "vh");
           faceCoordinates.map(function (face) {
             var positionX = face.x + (face.endX - face.x) / 100 * percent;
-            var positionY = face.y + (face.endY - face.y) / 100 * percent;
+            var positionY = face.y + (face.endY + faceYDifference * scale - face.y) / 100 * percent;
             face.element.setAttribute('x', positionX);
             face.element.setAttribute('y', positionY);
 
@@ -375,11 +382,6 @@ var initScrollMagic = function initScrollMagic() {
         break;
     }
   }).addTo(controller);
-  new ScrollMagic.Scene({
-    triggerElement: '#sec5'
-  }).setClassToggle('.faces-bottom', 'active') // add class
-  .addIndicators() // add indicators (requires plugin)
-  .addTo(controller);
 };
 
 window.onload = function () {
