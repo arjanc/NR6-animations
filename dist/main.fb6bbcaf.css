@@ -340,6 +340,10 @@ template {
 
 @media only screen and (min-width: 768px) {
   .heading1 {
+    font-size: 6em; } }
+
+@media only screen and (min-width: 1024px) {
+  .heading1 {
     font-size: 8em; } }
 
 /**
@@ -348,6 +352,9 @@ template {
 main {
   background-color: #96CAE3;
   transition: background-color 0.4s ease-in-out; }
+  main .main-inner {
+    max-width: 1200px;
+    margin: 0 auto; }
 
 main.blue {
   background-color: #2801CC; }
@@ -385,9 +392,16 @@ main.blue {
   height: 50vh; }
 
 .scene-2 {
+  display: inline-block;
+  width: 100%;
   height: 100vh;
   text-align: center;
   position: relative; }
+  .scene-2 .spacer-4 {
+    height: 0;
+    position: absolute;
+    top: 50vh;
+    left: 0; }
 
 .scene-2 .spacer-3 {
   margin-top: -25vh;
@@ -395,14 +409,50 @@ main.blue {
 
 .scene-3 {
   box-sizing: border-box;
+  min-height: 50vh;
+  position: relative; }
+  .scene-3 .spacer-5 {
+    position: absolute;
+    top: 40vh; }
+  .scene-3 .scene-3-title {
+    max-width: 80vw;
+    margin: 0 auto; }
+
+.scene-4 {
   min-height: 100vh;
-  padding: 20vh 0 0 0; }
+  position: relative; }
+
+@media only screen and (min-width: 1024px) {
+  .scene-3 {
+    min-height: 80vh; }
+    .scene-3 .scene-3-title {
+      padding-top: 5vh; } }
+
+@media only screen and (min-width: 1200px) {
+  .scene {
+    min-height: 1000px; }
+    .scene.scene-1 {
+      height: 2000px; }
+      .scene.scene-1 .spacer-1 {
+        min-height: 1000px; }
+      .scene.scene-1 .spacer-2 {
+        height: 500px; }
+    .scene.scene-2 {
+      height: 1200px; }
+      .scene.scene-2 .spacer-3 {
+        margin-top: -250px; }
+      .scene.scene-2 .spacer-4 {
+        top: calc(412px + (1200px - 100vh)); }
+    .scene.scene-3 .spacer-5 {
+      top: calc(50vh - 500px); }
+    .scene.scene-3 .scene-3-title {
+      padding-top: 100px; } }
 
 /**
     --- HERO ---
  */
 .hero {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   position: fixed;
@@ -517,152 +567,197 @@ main.blue {
   top: 550px;
   left: 1369px; }
 
-.faces {
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto; }
+
+.faces-wrapper {
   margin: 0 auto;
-  max-width: 70vw;
-  padding: 10vh 0 0 0; }
+  position: relative; }
+  .faces-wrapper.show .faces svg .face {
+    transform: scale(1); }
+
+.faces-container {
+  width: 100%;
+  padding-bottom: 68.77278%;
+  position: relative; }
+
+.faces.faces-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
+.faces.fixed {
+  padding-bottom: 55.01823%;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%); }
 
 .faces svg {
-  max-width: 100%;
-  height: auto; }
-
-.faces svg .face {
-  transform: scale(0);
-  transform-origin: 50% 50%;
-  transition: transform 250ms ease-in; }
-
-.faces.show svg .face {
-  transform: scale(1); }
+  width: 100%;
+  height: 100%;
+  transform: translateX(-50%);
+  position: absolute;
+  top: 0;
+  left: 50%; }
+  .faces svg .face {
+    transform: scale(0);
+    transform-origin: 50% 50%;
+    transition: transform 250ms ease-in; }
 
 .faces-title {
   color: white;
-  width: 80vw;
+  width: 80%;
   margin: 20vh auto 0; }
 
-.faces svg .face-1 {
+.faces-container .faces svg .face-1 {
   transition-delay: 50ms; }
 
-.faces svg .face-2 {
+.faces-container .faces svg .face-2 {
   transition-delay: 100ms; }
 
-.faces svg .face-3 {
+.faces-container .faces svg .face-3 {
   transition-delay: 150ms; }
 
-.faces svg .face-4 {
+.faces-container .faces svg .face-4 {
   transition-delay: 200ms; }
 
-.faces svg .face-5 {
+.faces-container .faces svg .face-5 {
   transition-delay: 250ms; }
 
-.faces svg .face-6 {
+.faces-container .faces svg .face-6 {
   transition-delay: 300ms; }
 
-.faces svg .face-7 {
+.faces-container .faces svg .face-7 {
   transition-delay: 350ms; }
 
-.faces svg .face-8 {
+.faces-container .faces svg .face-8 {
   transition-delay: 400ms; }
 
-.faces svg .face-9 {
+.faces-container .faces svg .face-9 {
   transition-delay: 450ms; }
 
-.faces svg .face-10 {
+.faces-container .faces svg .face-10 {
   transition-delay: 500ms; }
 
-.faces svg .face-11 {
+.faces-container .faces svg .face-11 {
   transition-delay: 550ms; }
 
-.faces svg .face-12 {
+.faces-container .faces svg .face-12 {
   transition-delay: 600ms; }
 
-.faces svg .face-13 {
+.faces-container .faces svg .face-13 {
   transition-delay: 650ms; }
 
-.faces svg .face-14 {
+.faces-container .faces svg .face-14 {
   transition-delay: 700ms; }
 
-.faces svg .face-15 {
+.faces-container .faces svg .face-15 {
   transition-delay: 750ms; }
 
-.faces svg .face-16 {
+.faces-container .faces svg .face-16 {
   transition-delay: 800ms; }
 
-.faces svg .face-17 {
+.faces-container .faces svg .face-17 {
   transition-delay: 850ms; }
 
-.faces svg .face-18 {
+.faces-container .faces svg .face-18 {
   transition-delay: 900ms; }
 
-.faces svg .face-19 {
+.faces-container .faces svg .face-19 {
   transition-delay: 950ms; }
 
-.faces svg .face-20 {
+.faces-container .faces svg .face-20 {
   transition-delay: 1000ms; }
 
-.faces.show svg .face-1 {
+.faces-container.show .faces svg .face-1 {
   transition-delay: 50ms; }
 
-.faces.show svg .face-2 {
+.faces-container.show .faces svg .face-2 {
   transition-delay: 100ms; }
 
-.faces.show svg .face-3 {
+.faces-container.show .faces svg .face-3 {
   transition-delay: 150ms; }
 
-.faces.show svg .face-4 {
+.faces-container.show .faces svg .face-4 {
   transition-delay: 200ms; }
 
-.faces.show svg .face-5 {
+.faces-container.show .faces svg .face-5 {
   transition-delay: 250ms; }
 
-.faces.show svg .face-6 {
+.faces-container.show .faces svg .face-6 {
   transition-delay: 300ms; }
 
-.faces.show svg .face-7 {
+.faces-container.show .faces svg .face-7 {
   transition-delay: 350ms; }
 
-.faces.show svg .face-8 {
+.faces-container.show .faces svg .face-8 {
   transition-delay: 400ms; }
 
-.faces.show svg .face-9 {
+.faces-container.show .faces svg .face-9 {
   transition-delay: 450ms; }
 
-.faces.show svg .face-10 {
+.faces-container.show .faces svg .face-10 {
   transition-delay: 500ms; }
 
-.faces.show svg .face-11 {
+.faces-container.show .faces svg .face-11 {
   transition-delay: 550ms; }
 
-.faces.show svg .face-12 {
+.faces-container.show .faces svg .face-12 {
   transition-delay: 600ms; }
 
-.faces.show svg .face-13 {
+.faces-container.show .faces svg .face-13 {
   transition-delay: 650ms; }
 
-.faces.show svg .face-14 {
+.faces-container.show .faces svg .face-14 {
   transition-delay: 700ms; }
 
-.faces.show svg .face-15 {
+.faces-container.show .faces svg .face-15 {
   transition-delay: 750ms; }
 
-.faces.show svg .face-16 {
+.faces-container.show .faces svg .face-16 {
   transition-delay: 800ms; }
 
-.faces.show svg .face-17 {
+.faces-container.show .faces svg .face-17 {
   transition-delay: 850ms; }
 
-.faces.show svg .face-18 {
+.faces-container.show .faces svg .face-18 {
   transition-delay: 900ms; }
 
-.faces.show svg .face-19 {
+.faces-container.show .faces svg .face-19 {
   transition-delay: 950ms; }
 
-.faces.show svg .face-20 {
+.faces-container.show .faces svg .face-20 {
   transition-delay: 1000ms; }
 
-@media only screen and (min-width: 768px) {
-  .faces {
-    max-width: none;
-    padding: 10vh 115px 0; } }
+.faces-bottom {
+  position: absolute;
+  top: 5vh;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; }
+  .faces-bottom .faces svg .face {
+    transition: none;
+    transform: scale(1); }
+  .faces-bottom .faces svg .face-3 {
+    transform: rotate(37deg);
+    transform-origin: 50% 50%;
+    transition: none; }
+  .faces-bottom .faces svg .face-16 {
+    transform: rotate(-26deg);
+    transform-origin: 50% 50%;
+    transition: none; }
+  .faces-bottom.active {
+    display: block; }
+
+@media only screen and (min-width: 1200px) {
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto; }
+  .faces-bottom {
+    top: 100px; } }
 
 
 /*# sourceMappingURL=/main.fb6bbcaf.css.map */

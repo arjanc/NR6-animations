@@ -194,7 +194,71 @@ module.hot.accept(reloadCSS);
 
 require("./../scss/main.scss");
 
-var resizeTimeout, controller, originalGripSize;
+var resizeTimeout, controller, originalGripSize, scene4;
+var faceCoordinates = [{
+  element: document.getElementById('face3'),
+  x: 132,
+  y: 361,
+  endX: 108,
+  endY: 390,
+  endRotate: 37
+}, {
+  element: document.getElementById('face5'),
+  x: 653,
+  y: 173,
+  endX: 467,
+  endY: 390,
+  endRotate: 0
+}, {
+  element: document.getElementById('face9'),
+  x: 583,
+  y: 321,
+  endX: 583,
+  endY: 321,
+  endRotate: 0
+}, {
+  element: document.getElementById('face11'),
+  x: 256,
+  y: 126,
+  endX: 292,
+  endY: 458,
+  endRotate: 0
+}, {
+  element: document.getElementById('face13'),
+  x: 454,
+  y: 9,
+  endX: -23,
+  endY: 368,
+  endRotate: 0
+}, {
+  element: document.getElementById('face14'),
+  x: 127,
+  y: 119,
+  endX: 641,
+  endY: 434,
+  endRotate: 0
+}, {
+  element: document.getElementById('face15'),
+  x: 330,
+  y: -13,
+  endX: 244,
+  endY: 368,
+  endRotate: 0
+}, {
+  element: document.getElementById('face16'),
+  x: 345,
+  y: 444,
+  endX: 382,
+  endY: 378,
+  endRotate: -26
+}, {
+  element: document.getElementById('face18'),
+  x: 478,
+  y: 401,
+  endX: 699,
+  endY: 320,
+  endRotate: 0
+}];
 var gripItems = document.querySelectorAll('.grip-item .grip-image');
 
 for (var i = 0; i < gripItems.length; i++) {
@@ -221,7 +285,25 @@ var handleResize = function handleResize() {
     // Run our resize functions
     resizeGrip();
     controller.update(true);
+
+    if (getDocumentWidth() > 1200) {
+      var duration = getDocumentHeight() < 1200 ? getDocumentHeight() / 1200 * 100 : 120;
+      console.log('duration', duration);
+      scene4.duration("".concat(duration, "%"));
+      document.querySelector('.spacer-4').style.top = getDocumentHeight() > 825 ? "".concat(825 / 2 + (getDocumentHeight() - 825) / 2, "px") : "".concat(825 / 2, "px");
+    } else {
+      scene4.duration('90%');
+      document.querySelector('.spacer-4').style.top = '';
+    }
   });
+};
+
+var getDocumentWidth = function getDocumentWidth() {
+  return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+};
+
+var getDocumentHeight = function getDocumentHeight() {
+  return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 };
 
 var initScrollMagic = function initScrollMagic() {
@@ -246,12 +328,61 @@ var initScrollMagic = function initScrollMagic() {
   new ScrollMagic.Scene({
     triggerElement: '#sec3'
   }).setClassToggle('#main', 'blue') // add class
+  .addIndicators() // add indicators (requires plugin)
+  .addTo(controller);
+  var duration = getDocumentHeight() < 1200 ? getDocumentHeight() / 1200 * 100 : 120;
+  scene4 = new ScrollMagic.Scene({
+    triggerElement: '#sec4',
+    duration: getDocumentWidth() > 1200 ? "".concat(duration, "%") : '90%'
+  }).setClassToggle('#faces-2', 'fixed') // add classes
+  .addIndicators() // add indicators (requires plugin)
+  .on('update', function (event) {
+    switch (event.type) {
+      case 'update':
+        var percent = 100 / (event.endPos - event.startPos) * (event.scrollPos - event.startPos); // let percent = 100 / ((event.endPos - event.startPos) / 2) * (event.scrollPos - event.startPos);
+
+        if (percent < 0) {
+          document.querySelector('#faces-2').style.top = ''; // reset coordinates of faces
+
+          faceCoordinates.map(function (face) {
+            face.element.setAttribute('x', face.x);
+            face.element.setAttribute('y', face.y);
+            face.element.querySelector('.face').removeAttribute('style');
+          });
+        }
+
+        if (percent >= 0) {
+          if (percent > 100) {
+            percent = 100;
+          }
+
+          document.querySelector('#faces-2').style.top = "".concat(15 / 100 * percent, "vh");
+          faceCoordinates.map(function (face) {
+            var positionX = face.x + (face.endX - face.x) / 100 * percent;
+            var positionY = face.y + (face.endY - face.y) / 100 * percent;
+            face.element.setAttribute('x', positionX);
+            face.element.setAttribute('y', positionY);
+
+            if (face.endRotate !== 0) {
+              face.element.querySelector('.face').setAttribute('style', "transform: rotate(".concat(face.endRotate / 100 * percent, "deg); transition-delay: 0; transition: none;"));
+            }
+          });
+        }
+
+        break;
+
+      default:
+        break;
+    }
+  }).addTo(controller);
+  new ScrollMagic.Scene({
+    triggerElement: '#sec5'
+  }).setClassToggle('.faces-bottom', 'active') // add class
+  .addIndicators() // add indicators (requires plugin)
   .addTo(controller);
 };
 
 window.onload = function () {
-  var _this = this;
-
   var gripImages = document.querySelectorAll('.grip-item img');
   var imagesLoaded = 0;
 
@@ -270,7 +401,8 @@ window.onload = function () {
         }; // now we initialize the rest...
 
         resizeGrip();
-        window.addEventListener('resize', _this.handleResize);
+        handleResize();
+        window.addEventListener('resize', handleResize);
         document.querySelector('.grip-container-inner').classList.remove('loading');
       }
     });
