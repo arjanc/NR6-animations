@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "node-sass": "^4.12.0",
     "parcel-bundler": "^1.12.3"
   },
   "name": "NR6-animations",

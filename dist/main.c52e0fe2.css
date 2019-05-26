@@ -1,3 +1,28 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * bureau-grot-condensed:
+ *   - http://typekit.com/eulas/00000000000000003b9ae70a
+ *
+ * © 2009-2019 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2019-05-24 14:06:37 UTC"}*/
+
+@import url("https://p.typekit.net/p.css?s=1&k=jxb5ndt&ht=tk&f=30907&a=1895367&app=typekit&e=css");
+
+@font-face {
+    font-family:"bureau-grot-condensed";
+    src:url("https://use.typekit.net/af/f57243/00000000000000003b9ae70a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/f57243/00000000000000003b9ae70a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/f57243/00000000000000003b9ae70a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+    font-style:normal;font-weight:500;
+}
+
+.heading1 {
+    font-family: "bureau-grot-condensed",sans-serif;
+}
+
 /**
     --- ANIMATIONS ---
  */
@@ -214,6 +239,26 @@ main.blue {
 .faces.show svg .face {
     transform: scale(1);
 }
+.faces.show svg .face-1 { transition-delay: 0s; }
+.faces.show svg .face-2 { transition-delay: 20ms; }
+.faces.show svg .face-3 { transition-delay: 40ms; }
+.faces.show svg .face-4 { transition-delay: 60ms; }
+.faces.show svg .face-5 { transition-delay: 80ms; }
+.faces.show svg .face-6 { transition-delay: 100ms; }
+.faces.show svg .face-7 { transition-delay: 120ms; }
+.faces.show svg .face-8 { transition-delay: 140ms; }
+.faces.show svg .face-9 { transition-delay: 160ms; }
+.faces.show svg .face-10 { transition-delay: 180ms; }
+.faces.show svg .face-11 { transition-delay: 200ms; }
+.faces.show svg .face-12 { transition-delay: 220ms; }
+.faces.show svg .face-13 { transition-delay: 240ms; }
+.faces.show svg .face-14 { transition-delay: 260ms; }
+.faces.show svg .face-15 { transition-delay: 280ms; }
+.faces.show svg .face-16 { transition-delay: 300ms; }
+.faces.show svg .face-17 { transition-delay: 320ms; }
+.faces.show svg .face-18 { transition-delay: 340ms; }
+.faces.show svg .face-19 { transition-delay: 360ms; }
+.faces.show svg .face-20 { transition-delay: 380ms; }
 
 @media only screen and (min-width: 768px) {
     .faces {
@@ -221,3 +266,5 @@ main.blue {
         padding: 0 115px;
     }
 }
+
+/*# sourceMappingURL=/main.c52e0fe2.css.map */

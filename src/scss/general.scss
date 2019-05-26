@@ -1,0 +1,65 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * bureau-grot-condensed:
+ *   - http://typekit.com/eulas/00000000000000003b9ae70a
+ *
+ * © 2009-2019 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2019-05-24 14:06:37 UTC"}*/
+
+@import url("https://p.typekit.net/p.css?s=1&k=jxb5ndt&ht=tk&f=30907&a=1895367&app=typekit&e=css");
+
+@font-face {
+  font-family:"bureau-grot-condensed";
+  src:url("https://use.typekit.net/af/f57243/00000000000000003b9ae70a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/f57243/00000000000000003b9ae70a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/f57243/00000000000000003b9ae70a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+  font-style:normal;font-weight:500;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.heading1 {
+  color: white;
+  font-family: "bureau-grot-condensed",sans-serif;
+  font-size: 4em;
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+.heading2 {
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: 3em;
+}
+
+@media only screen and (min-width: 768px) {
+  .heading1 {
+    font-size: 6em;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .heading1 {
+    font-size: 8em;
+  }
+}
+
+/**
+    --- MAIN ---
+ */
+main {
+  background-color: #96CAE3;
+  transition: background-color 0.4s ease-in-out;
+
+  .main-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+main.blue {
+  background-color: #2801CC;
+}
