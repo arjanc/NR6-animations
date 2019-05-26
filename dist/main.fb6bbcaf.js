@@ -194,71 +194,84 @@ module.hot.accept(reloadCSS);
 
 require("./../scss/main.scss");
 
-var resizeTimeout, controller, originalGripSize, scene4;
-var faceCoordinates = [{
-  element: document.getElementById('face3'),
-  x: 132,
-  y: 361,
-  endX: 108,
-  endY: 390,
-  endRotate: 37
-}, {
-  element: document.getElementById('face5'),
-  x: 653,
-  y: 173,
-  endX: 467,
-  endY: 390,
-  endRotate: 0
-}, {
-  element: document.getElementById('face9'),
-  x: 583,
-  y: 321,
-  endX: 583,
-  endY: 321,
-  endRotate: 0
-}, {
-  element: document.getElementById('face11'),
-  x: 256,
-  y: 126,
-  endX: 292,
-  endY: 458,
-  endRotate: 0
-}, {
-  element: document.getElementById('face13'),
-  x: 454,
-  y: 9,
-  endX: -23,
-  endY: 368,
-  endRotate: 0
-}, {
-  element: document.getElementById('face14'),
-  x: 127,
-  y: 119,
-  endX: 641,
-  endY: 434,
-  endRotate: 0
-}, {
-  element: document.getElementById('face15'),
-  x: 330,
-  y: -13,
-  endX: 244,
-  endY: 368,
-  endRotate: 0
-}, {
-  element: document.getElementById('face16'),
-  x: 345,
-  y: 444,
-  endX: 382,
-  endY: 378,
-  endRotate: -26
-}, {
-  element: document.getElementById('face18'),
-  x: 478,
-  y: 401,
-  endX: 699,
-  endY: 320,
-  endRotate: 0
-}];
+var resizeTimeout, controller, originalGripSize, scene4, faceCoordinates;
+/*
+const faceCoordinates = [
+    {
+        element: document.getElementById('face3'),
+        x: 132,
+        y: 361,
+        endX: 108,
+        endY: 390,
+        endRotate: 37,
+    },
+    {
+        element: document.getElementById('face5'),
+        x: 653,
+        y: 173,
+        endX: 467,
+        endY: 390,
+        endRotate: 0,
+    },
+    {
+        element: document.getElementById('face9'),
+        x: 583,
+        y: 321,
+        endX: 583,
+        endY: 321,
+        endRotate: 0,
+    },
+    {
+        element: document.getElementById('face11'),
+        x: 256,
+        y: 126,
+        endX: 292,
+        endY: 458,
+        endRotate: 0,
+    },
+    {
+        element: document.getElementById('face13'),
+        x: 454,
+        y: 9,
+        endX: -23,
+        endY: 368,
+        endRotate: 0,
+    },
+    {
+        element: document.getElementById('face14'),
+        x: 127,
+        y: 119,
+        endX: 641,
+        endY: 434,
+        endRotate: 0,
+    },
+    {
+        element: document.getElementById('face15'),
+        x: 330,
+        y: -13,
+        endX: 244,
+        endY: 368,
+        endRotate: 0,
+    },
+    {
+        element: document.getElementById('face16'),
+        x: 345,
+        y: 444,
+        endX: 382,
+        endY: 378,
+        endRotate: -26,
+    },
+    {
+        element: document.getElementById('face18'),
+        x: 478,
+        y: 401,
+        endX: 699,
+        endY: 320,
+        endRotate: 0,
+    },
+];
+ */
+
 var facesMainElement = document.querySelector('#faces');
 var facesContainerElement = document.querySelector('.faces-container');
 var facesPlaceholder = document.querySelector('.faces-placeholder');
@@ -380,6 +393,70 @@ var initScrollMagic = function initScrollMagic() {
 };
 
 window.onload = function () {
+  faceCoordinates = [{
+    element: document.getElementById('face3'),
+    x: 132,
+    y: 361,
+    endX: 108,
+    endY: 390,
+    endRotate: 37
+  }, {
+    element: document.getElementById('face5'),
+    x: 653,
+    y: 173,
+    endX: 467,
+    endY: 390,
+    endRotate: 0
+  }, {
+    element: document.getElementById('face9'),
+    x: 583,
+    y: 321,
+    endX: 583,
+    endY: 321,
+    endRotate: 0
+  }, {
+    element: document.getElementById('face11'),
+    x: 256,
+    y: 126,
+    endX: 292,
+    endY: 458,
+    endRotate: 0
+  }, {
+    element: document.getElementById('face13'),
+    x: 454,
+    y: 9,
+    endX: -23,
+    endY: 368,
+    endRotate: 0
+  }, {
+    element: document.getElementById('face14'),
+    x: 127,
+    y: 119,
+    endX: 641,
+    endY: 434,
+    endRotate: 0
+  }, {
+    element: document.getElementById('face15'),
+    x: 330,
+    y: -13,
+    endX: 244,
+    endY: 368,
+    endRotate: 0
+  }, {
+    element: document.getElementById('face16'),
+    x: 345,
+    y: 444,
+    endX: 382,
+    endY: 378,
+    endRotate: -26
+  }, {
+    element: document.getElementById('face18'),
+    x: 478,
+    y: 401,
+    endX: 699,
+    endY: 320,
+    endRotate: 0
+  }];
   var gripImages = document.querySelectorAll('.grip-item img');
   var imagesLoaded = 0;
 
@@ -435,7 +512,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55612" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57490" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
