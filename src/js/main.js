@@ -66,28 +66,24 @@ function initScrollMagic() {
         triggerElement: '#sec1',
     })
         .setClassToggle('#grip-container', 'sticked') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
         triggerElement: '#sec2',
     })
         .setClassToggle('#hero', 'nonFixed') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
         triggerElement: '#sec3',
     })
         .setClassToggle('#faces', 'show') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
         triggerElement: '#sec3',
     })
         .setClassToggle('#main', 'blue') // add class
-        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
     scene4 = new ScrollMagic.Scene({
@@ -95,7 +91,6 @@ function initScrollMagic() {
         duration: `${getScene4Duration()}px`,
     })
         .setClassToggle('#faces-2', 'fixed') // add classes
-        .addIndicators() // add indicators (requires plugin)
         .on('update', (event) => {
             switch(event.type) {
                 case 'update':
@@ -232,7 +227,6 @@ window.onload = function() {
                     width: document.getElementsByClassName('grip-container')[0].offsetWidth,
                     height: document.getElementsByClassName('grip-container')[0].offsetHeight,
                 };
-                console.log('originalGripSize: ', originalGripSize);
 
                 // now we initialize the rest...
                 resizeGrip();
