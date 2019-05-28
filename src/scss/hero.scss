@@ -8,8 +8,10 @@
   overflow: hidden;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
   z-index: 1;
+  max-width: 1200px;
+  transform: translateX(-50%);
 }
 
 .hero .hero-title {
