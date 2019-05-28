@@ -8,6 +8,7 @@
   overflow: hidden;
   position: fixed;
   top: 0;
+  bottom: auto;
   left: 50%;
   z-index: 1;
   max-width: 1200px;
@@ -15,7 +16,7 @@
 }
 
 .hero .hero-title {
-  align-self: flex-end;
+  position: relative;
   color: #ffffff;
   width: 100%;
   font-size: 400px;
@@ -23,12 +24,16 @@
   padding-bottom: 200px;
   text-align: center;
   text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hero.nonFixed {
   position: relative;
   top: auto;
+  left: 0;
   bottom: 75vh;
+  transform: none;
 }
 
 @media only screen and (max-height: 800px) {
@@ -72,7 +77,8 @@
   transition: all 0.4s ease-in-out;
 }
 .grip-container.floating.sticked .grip-item .grip-image {
-  animation: none;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 .grip-container.floating.sticked .grip-item.grip-1,
