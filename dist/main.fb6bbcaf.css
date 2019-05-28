@@ -462,7 +462,8 @@ main.blue {
 
 @media only screen and (max-height: 800px) {
   .hero.nonFixed {
-    bottom: 600px; } }
+    bottom: auto;
+    transform: translateY(-75%); } }
 
 .grip-container {
   box-sizing: border-box;
@@ -478,7 +479,7 @@ main.blue {
   display: block;
   width: 2242px;
   height: 1295px;
-  padding: 500px; }
+  padding: 250px 500px; }
 
 .grip-container-inner.loading .grip-item {
   visibility: hidden; }
@@ -496,7 +497,7 @@ main.blue {
   transition: all 0.4s ease-in-out; }
 
 .grip-container.floating.sticked .grip-item .grip-image {
-  animation-iteration-count: 1; }
+  animation: none; }
 
 .grip-container.floating.sticked .grip-item.grip-1,
 .grip-container.floating.sticked .grip-item.grip-2,

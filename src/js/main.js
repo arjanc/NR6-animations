@@ -1,81 +1,6 @@
 import './../scss/main.scss';
 
-let resizeTimeout, controller, originalGripSize, scene4;
-
-const faceCoordinates = [
-    {
-        element: document.getElementById('face3'),
-        x: 132,
-        y: 361,
-        endX: 108,
-        endY: 390,
-        endRotate: 37,
-    },
-    {
-        element: document.getElementById('face5'),
-        x: 653,
-        y: 173,
-        endX: 467,
-        endY: 390,
-        endRotate: 0,
-    },
-    {
-        element: document.getElementById('face9'),
-        x: 583,
-        y: 321,
-        endX: 583,
-        endY: 321,
-        endRotate: 0,
-    },
-    {
-        element: document.getElementById('face11'),
-        x: 256,
-        y: 126,
-        endX: 292,
-        endY: 458,
-        endRotate: 0,
-    },
-    {
-        element: document.getElementById('face13'),
-        x: 454,
-        y: 9,
-        endX: -23,
-        endY: 368,
-        endRotate: 0,
-    },
-    {
-        element: document.getElementById('face14'),
-        x: 127,
-        y: 119,
-        endX: 641,
-        endY: 434,
-        endRotate: 0,
-    },
-    {
-        element: document.getElementById('face15'),
-        x: 330,
-        y: -13,
-        endX: 244,
-        endY: 368,
-        endRotate: 0,
-    },
-    {
-        element: document.getElementById('face16'),
-        x: 345,
-        y: 444,
-        endX: 382,
-        endY: 378,
-        endRotate: -26,
-    },
-    {
-        element: document.getElementById('face18'),
-        x: 478,
-        y: 401,
-        endX: 699,
-        endY: 320,
-        endRotate: 0,
-    },
-];
+let resizeTimeout, controller, originalGripSize, scene4, faceCoordinates;
 
 const facesMainElement = document.querySelector('#faces');
 const facesContainerElement = document.querySelector('.faces-container');
@@ -87,7 +12,6 @@ for (let i=0; i < gripItems.length; i++) {
     const floatTime = Math.floor(Math.random() * 6) + 1;
     gripItems[i].style.setProperty('--float-delay', -floatTime +'s');
 }
-
 
 function getFacesHeight() {
     return (facesTitleElement.getBoundingClientRect().y + facesTitleElement.getBoundingClientRect().height) - facesMainElement.getBoundingClientRect().y + facesPlaceholder.getBoundingClientRect().height;
@@ -110,7 +34,7 @@ function resizeGrip() {
     gripContainer.style.transform = "translate(-50%, -50%) " + "scale(" + (scale * 1) + ")";
 }
 
-const handleResize = function() {
+function handleResize() {
     // If there's a timer, cancel it
     if (resizeTimeout) {
         window.cancelAnimationFrame(resizeTimeout);
@@ -131,21 +55,9 @@ const handleResize = function() {
 
         scene4.duration(`${getScene4Duration()}px`);
     });
-};
+}
 
-const getDocumentWidth = function() {
-    return window.innerWidth
-        || document.documentElement.clientWidth
-        || document.body.clientWidth;
-};
-
-const getDocumentHeight = function() {
-    return window.innerHeight
-        || document.documentElement.clientHeight
-        || document.body.clientHeight;
-};
-
-const initScrollMagic = function() {
+function initScrollMagic() {
     // initialize ScrollMagic
     controller = new ScrollMagic.Controller();
 
@@ -225,9 +137,84 @@ const initScrollMagic = function() {
             }
         })
         .addTo(controller);
-};
+}
 
 window.onload = function() {
+    faceCoordinates = [
+        {
+            element: document.getElementById('face3'),
+            x: 132,
+            y: 361,
+            endX: 108,
+            endY: 390,
+            endRotate: 37,
+        },
+        {
+            element: document.getElementById('face5'),
+            x: 653,
+            y: 173,
+            endX: 467,
+            endY: 390,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face9'),
+            x: 583,
+            y: 321,
+            endX: 583,
+            endY: 321,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face11'),
+            x: 256,
+            y: 126,
+            endX: 292,
+            endY: 458,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face13'),
+            x: 454,
+            y: 9,
+            endX: -23,
+            endY: 368,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face14'),
+            x: 127,
+            y: 119,
+            endX: 641,
+            endY: 434,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face15'),
+            x: 330,
+            y: -13,
+            endX: 244,
+            endY: 368,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face16'),
+            x: 345,
+            y: 444,
+            endX: 382,
+            endY: 378,
+            endRotate: -26,
+        },
+        {
+            element: document.getElementById('face18'),
+            x: 478,
+            y: 401,
+            endX: 699,
+            endY: 320,
+            endRotate: 0,
+        },
+    ];
+
     const gripImages = document.querySelectorAll('.grip-item img');
     let imagesLoaded = 0;
     for (let i=0; i < gripImages.length; i++) {
@@ -245,6 +232,7 @@ window.onload = function() {
                     width: document.getElementsByClassName('grip-container')[0].offsetWidth,
                     height: document.getElementsByClassName('grip-container')[0].offsetHeight,
                 };
+                console.log('originalGripSize: ', originalGripSize);
 
                 // now we initialize the rest...
                 resizeGrip();
