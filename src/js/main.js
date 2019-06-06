@@ -14,7 +14,6 @@ for (let i=0; i < gripItems.length; i++) {
 }
 
 function getFacesHeight() {
-
     const xTop = facesTitleElement.getBoundingClientRect().y | facesTitleElement.getBoundingClientRect().top;
     const xHeight = facesTitleElement.getBoundingClientRect().height;
     const yTop = facesMainElement.getBoundingClientRect().y | facesMainElement.getBoundingClientRect().top;
@@ -57,8 +56,6 @@ function handleResize() {
         const newFacesHeight = getFacesHeight();
 
         facesContainerElement.style.height = `${newFacesHeight}px`;
-
-        console.log('facesContainerELement height: ',newFacesHeight );
         facesContainerElement.querySelector('svg').setAttribute('viewBox', `0 0 823 ${newFacesHeight}`);
 
         scene4.duration(`${getScene4Duration()}px`);
@@ -108,8 +105,6 @@ function initScrollMagic() {
                     const scale = 823 / document.querySelector('.faces-placeholder').getBoundingClientRect().width;
 
                     let percent = 100 / (event.endPos - event.startPos) * (event.scrollPos - event.startPos);
-
-                    console.log('scrollPos: ', event.scrollPos, ', startPos:', event.startPos, ', endPost: ', event.endPos);
 
                     if (percent < 0) {
                         // reset coordinates of faces
