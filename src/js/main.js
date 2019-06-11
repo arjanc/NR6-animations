@@ -1,17 +1,6 @@
 import './../scss/main.scss';
 
-let resizeTimeout, controller, originalGripSize, scene4, faceCoordinates;
-
-const facesMainElement = document.querySelector('#faces');
-const facesContainerElement = document.querySelector('.faces-container');
-const facesPlaceholder = document.querySelector('.faces-placeholder');
-const facesTitleElement = document.querySelector('.faces-title');
-
-const gripItems = document.querySelectorAll('.grip-item .grip-image');
-for (let i=0; i < gripItems.length; i++) {
-    const floatTime = Math.floor(Math.random() * 6) + 1;
-    gripItems[i].style.setProperty('--float-delay', -floatTime +'s');
-}
+let resizeTimeout, controller, originalGripSize, scene4, faceCoordinates, facesMainElement, facesContainerElement, facesPlaceholder, facesTitleElement;
 
 function getFacesHeight() {
     const xTop = facesTitleElement.getBoundingClientRect().y | facesTitleElement.getBoundingClientRect().top;
@@ -140,6 +129,17 @@ function initScrollMagic() {
 }
 
 window.onload = function() {
+    facesMainElement = document.querySelector('#faces');
+    facesContainerElement = document.querySelector('.faces-container');
+    facesPlaceholder = document.querySelector('.faces-placeholder');
+    facesTitleElement = document.querySelector('.faces-title');
+
+    const gripItems = document.querySelectorAll('.grip-item .grip-image');
+    for (let i=0; i < gripItems.length; i++) {
+        const floatTime = Math.floor(Math.random() * 6) + 1;
+        gripItems[i].style.setProperty('--float-delay', -floatTime +'s');
+    }
+
     faceCoordinates = [
         {
             element: document.getElementById('face3'),
