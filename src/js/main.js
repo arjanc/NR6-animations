@@ -51,6 +51,11 @@ function handleResize() {
     });
 }
 
+function stopGripAnimation(element) {
+    element.classList.remove('animating');
+    //element.off();
+}
+
 function initScrollMagic() {
     // initialize ScrollMagic
     controller = new ScrollMagic.Controller();
@@ -60,6 +65,32 @@ function initScrollMagic() {
         triggerElement: '#sec1',
     })
         .setClassToggle('#grip-container', 'sticked') // add class
+        .on('enter leave', (event) => {
+            const gripImages = document.querySelectorAll('.grip-item .grip-image');
+            switch (event.type) {
+                case 'enter':
+                    // stop animation
+                    for (let i=0; i < gripImages.length; i++) {
+                        // Chrome, Safari and Opera
+                        gripImages[i].addEventListener('webkitAnimationIteration', () => {
+                            stopGripAnimation(gripImages[i]);
+                        });
+                        // all other browsers
+                        gripImages[i].addEventListener('animationiteration', () => {
+                            stopGripAnimation(gripImages[i]);
+                        });
+                    }
+                    break;
+                case 'leave':
+                    // start animation
+                    for (let i=0; i < gripImages.length; i++) {
+                        gripImages[i].classList.add('animating');
+                    }
+                    break;
+                default:
+                    break;
+            }
+        })
         .addTo(controller);
 
     new ScrollMagic.Scene({

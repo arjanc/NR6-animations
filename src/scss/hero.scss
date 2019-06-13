@@ -63,7 +63,7 @@
   visibility: hidden;
 }
 
-.grip-container.floating .grip-item .grip-image {
+.grip-container.floating .grip-item .grip-image.animating {
   animation: float 6s ease-in-out infinite;
   animation-delay: var(--float-delay);
 }
@@ -75,10 +75,6 @@
 }
 .grip-container .grip-item {
   transition: all 0.4s ease-in-out;
-}
-.grip-container.floating.sticked .grip-item .grip-image {
-  animation-play-state: paused;
-  animation-fill-mode: forwards;
 }
 
 .grip-container.floating.sticked .grip-item.grip-1,
