@@ -51,9 +51,10 @@ function handleResize() {
     });
 }
 
-function stopGripAnimation(element) {
-    element.classList.remove('animating');
-    //element.off();
+function stopGripAnimation(event) {
+    event.target.classList.remove('animating');
+    event.target.removeEventListener('animationiteration', stopGripAnimation);
+    event.target.removeEventListener('webkitAnimationIteration', stopGripAnimation);
 }
 
 function initScrollMagic() {
@@ -72,13 +73,9 @@ function initScrollMagic() {
                     // stop animation
                     for (let i=0; i < gripImages.length; i++) {
                         // Chrome, Safari and Opera
-                        gripImages[i].addEventListener('webkitAnimationIteration', () => {
-                            stopGripAnimation(gripImages[i]);
-                        });
+                        gripImages[i].addEventListener('webkitAnimationIteration', stopGripAnimation);
                         // all other browsers
-                        gripImages[i].addEventListener('animationiteration', () => {
-                            stopGripAnimation(gripImages[i]);
-                        });
+                        gripImages[i].addEventListener('animationiteration', stopGripAnimation);
                     }
                     break;
                 case 'leave':
