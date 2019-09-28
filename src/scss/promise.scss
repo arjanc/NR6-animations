@@ -1,3 +1,6 @@
+// Misc
+$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+
 .scene-promise {
   color: white;
   text-align: center;
@@ -33,6 +36,46 @@
         width: 70px;
       }
     }
+  }
+}
+
+.checkmark {
+  stroke-width: 2;
+  stroke: #ffffff;
+  stroke-miterlimit: 10;
+
+  .checkmarkCircleContainer {
+    animation: drop ease-in-out .3s forwards;
+  }
+
+  .checkmarkCircle {
+    fill: #ffffff;
+    transform: translate(-41px, -40px);
+
+  }
+
+  .checkmarkCheck {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: stroke .2s $curve .4s forwards;
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: scale(0);
+  }
+  96% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
   }
 }
 
