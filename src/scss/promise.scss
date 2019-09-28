@@ -1,0 +1,62 @@
+.scene-promise {
+  color: white;
+  text-align: center;
+  position: relative;
+
+  .trigger-promise {
+    margin-top: -25vh;
+    position: absolute;
+  }
+
+  .promise-title {
+    margin-bottom: 3rem;
+  }
+
+  .promises-list {
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    word-wrap: break-word;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+
+    li {
+      margin-bottom: 2rem;
+      position: relative;
+      padding-left: 90px;
+      min-height: 90px;
+
+      .checkmark {
+        position: absolute;
+        left: 0;
+        width: 70px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .scene-promise {
+    .promise-title {
+      margin-bottom: 4rem;
+    }
+
+    .promises-list {
+      font-size: 1.9rem;
+      line-height: 2.5rem;
+      width: 70%;
+      max-width: 700px;
+      margin: 0 auto;
+
+      li {
+        margin-bottom: 3rem;
+        padding-left: 120px;
+
+        .checkmark {
+          width: 90px;
+        }
+      }
+    }
+  }
+}

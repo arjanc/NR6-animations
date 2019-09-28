@@ -34,6 +34,7 @@
 @media only screen and (max-height: 800px) {
   .hero.nonFixed {
     bottom: auto;
+    left: 0;
     transform: translateY(-75%);
   }
 }

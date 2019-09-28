@@ -66,14 +66,22 @@ function initScrollMagic() {
         triggerElement: '#sec1',
     })
         .setClassToggle('#grip-container', 'sticked') // add class
-        .addIndicators() // add indicators (requires plugin)
+        .addIndicators({ name: "grip"}) // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
         triggerElement: '#sec2',
     })
         .setClassToggle('#hero', 'nonFixed') // add class
-        .addIndicators() // add indicators (requires plugin)
+        .addIndicators({ name: "hero"}) // add indicators (requires plugin)
+        .addTo(controller);
+
+    new ScrollMagic.Scene({
+        triggerElement: '#trigger-promise',
+    })
+        .setClassToggle('#main', 'blue') // add class
+        // .setClassToggle('#promise', 'show') // add class
+        .addIndicators({name: "promises"}) // add indicators (requires plugin);
         .addTo(controller);
 
     new ScrollMagic.Scene({
