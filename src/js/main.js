@@ -69,19 +69,7 @@ function initScrollMagic() {
     // Settings some tweens.
     const checkmarkTimeline = new TimelineLite();
     checkmarkTimeline.staggerTo('.promises-list-item > span', 1, { opacity: 1 }, 0.5);
-
-    document.querySelectorAll('.promises-list-item').forEach((el, index) => {
-        checkmarkTimeline.call(function() {
-            const checkmark = el.querySelector('svg');
-
-            if (checkmark.classList.contains('animated')) {
-                checkmark.classList.remove('animated');
-            } else {
-                checkmark.classList.add('animated');
-            }
-
-        }, null, null, 0.5 * index);
-    });
+    checkmarkTimeline.staggerTo('.promises-list-item > svg', 1, { className: '+=animated'}, 0.5, "-=2.5"); // "-=2.5 puts the start time 2.5s earlier
 
 
     // Build scenes.
@@ -101,36 +89,52 @@ function initScrollMagic() {
 
     new ScrollMagic.Scene({
         triggerElement: '#trigger-promise',
+        duration: '100%' // needs to be set to the classToggle will remove the active class when scene is done.
     })
-        .setClassToggle('#main', 'blue') // add class
+        .setClassToggle('#blue', 'active') // add class
+        .addTo(controller);
+
+    new ScrollMagic.Scene({
+        triggerElement: '#trigger-promise'
+    })
         .setTween(checkmarkTimeline)
         .addIndicators({name: "promises"}) // add indicators (requires plugin);
         .on('enter leave', (event) => {
             switch(event.type) {
                 case "leave":
+                    console.log('leave');
                     checkmarkTimeline.timeScale(4);
                     break;
                 case "enter":
                 default:
-                    checkmarkTimeline.timeScale(1).time(0).play();
+                    checkmarkTimeline.timeScale(1).play(0);
                     break;
             }
         })
         .addTo(controller);
 
     new ScrollMagic.Scene({
-        triggerElement: '#sec3',
+        triggerElement: '#trigger-stakeholder-success',
+        duration: '100%' // needs to be set to the classToggle will remove the active class when scene is done.
     })
-        .setClassToggle('#faces', 'show') // add class
-        .addIndicators() // add indicators (requires plugin)
+        .setClassToggle('#green', 'active')// add class
+        .addIndicators({name: "stakeholders"}) // add indicators (requires plugin)
         .addTo(controller);
 
     new ScrollMagic.Scene({
         triggerElement: '#sec3',
     })
-        .setClassToggle('#main', 'blue') // add class
-        .addIndicators() // add indicators (requires plugin)
+        .setClassToggle('#faces', 'show') // add class
+        .setClassToggle('#blue', 'active') // add class
+        .addIndicators({ name: "faces"}) // add indicators (requires plugin)
         .addTo(controller);
+
+    // new ScrollMagic.Scene({
+    //     triggerElement: '#sec3',
+    // })
+    //     .setClassToggle('#blue', 'active') // add class
+    //     .addIndicators({ name: "faces"}) // add indicators (requires plugin)
+    //     .addTo(controller);
 
     scene4 = new ScrollMagic.Scene({
         triggerElement: '#sec4',
