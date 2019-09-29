@@ -57,9 +57,32 @@ function handleResize() {
     });
 }
 
+function listTweenComplete(tween) {
+    console.log('complete: ', tween.target);
+    tween.target.querySelector('svg').classList.add('animated');
+}
+
 function initScrollMagic() {
     // initialize ScrollMagic
     controller = new ScrollMagic.Controller();
+
+    // Settings some tweens.
+    const checkmarkTimeline = new TimelineLite();
+    checkmarkTimeline.staggerTo('.promises-list-item > span', 1, { opacity: 1 }, 0.5);
+
+    document.querySelectorAll('.promises-list-item').forEach((el, index) => {
+        checkmarkTimeline.call(function() {
+            const checkmark = el.querySelector('svg');
+
+            if (checkmark.classList.contains('animated')) {
+                checkmark.classList.remove('animated');
+            } else {
+                checkmark.classList.add('animated');
+            }
+
+        }, null, null, 0.5 * index);
+    });
+
 
     // Build scenes.
     new ScrollMagic.Scene({
@@ -80,8 +103,19 @@ function initScrollMagic() {
         triggerElement: '#trigger-promise',
     })
         .setClassToggle('#main', 'blue') // add class
-        // .setClassToggle('#promise', 'show') // add class
+        .setTween(checkmarkTimeline)
         .addIndicators({name: "promises"}) // add indicators (requires plugin);
+        .on('enter leave', (event) => {
+            switch(event.type) {
+                case "leave":
+                    checkmarkTimeline.timeScale(4);
+                    break;
+                case "enter":
+                default:
+                    checkmarkTimeline.timeScale(1).time(0).play();
+                    break;
+            }
+        })
         .addTo(controller);
 
     new ScrollMagic.Scene({

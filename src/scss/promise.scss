@@ -30,6 +30,10 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
       padding-left: 90px;
       min-height: 90px;
 
+      > span {
+        opacity: 0;
+      }
+
       .checkmark {
         position: absolute;
         left: 0;
@@ -45,19 +49,29 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   stroke-miterlimit: 10;
 
   .checkmarkCircleContainer {
-    animation: drop ease-in-out .3s forwards;
+    transform: scale(0);
   }
 
   .checkmarkCircle {
     fill: #ffffff;
     transform: translate(-41px, -40px);
-
   }
 
   .checkmarkCheck {
     stroke-dasharray: 120;
     stroke-dashoffset: 120;
-    animation: stroke .2s $curve .4s forwards;
+  }
+
+  &.animated {
+    .checkmarkCircleContainer {
+      animation: drop ease-in-out .3s forwards;
+    }
+
+    .checkmarkCheck {
+      stroke-dasharray: 120;
+      stroke-dashoffset: 120;
+      animation: stroke .2s $curve .4s forwards;
+    }
   }
 }
 
