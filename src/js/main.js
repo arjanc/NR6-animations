@@ -62,18 +62,18 @@ function initScrollMagic() {
 
 
     // Build scenes.
-    new ScrollMagic.Scene({
+    scenes.grip = new ScrollMagic.Scene({
         triggerElement: '#sec1',
     })
         .setClassToggle('#grip-container', 'sticked') // add class
-        .addIndicators({ name: "grip"}) // add indicators (requires plugin)
+        // .addIndicators({ name: "grip"}) // add indicators (requires plugin)
         .addTo(controller);
 
-    new ScrollMagic.Scene({
+    scenes.hero = new ScrollMagic.Scene({
         triggerElement: '#sec2',
     })
         .setClassToggle('#hero', 'nonFixed') // add class
-        .addIndicators({ name: "hero"}) // add indicators (requires plugin)
+        // .addIndicators({ name: "hero"}) // add indicators (requires plugin)
         .addTo(controller);
 
     scenes.promise = new ScrollMagic.Scene({
@@ -81,14 +81,14 @@ function initScrollMagic() {
         duration: document.querySelector('#promise').getBoundingClientRect().height + (document.querySelector('#promise').getBoundingClientRect().top - document.querySelector('#trigger-promise').getBoundingClientRect().top) // needs to be set to the classToggle will remove the active class when scene is done.
     })
         .setClassToggle('#blue', 'active') // add class
-        .addIndicators({name: "promises"}) // add indicators (requires plugin);
+        // .addIndicators({name: "promises"}) // add indicators (requires plugin);
         .addTo(controller);
 
-    new ScrollMagic.Scene({
+    scenes.promiseList = new ScrollMagic.Scene({
         triggerElement: '#trigger-promise'
     })
         .setTween(checkmarkTimeline)
-        .addIndicators({name: "promises-list"}) // add indicators (requires plugin);
+        // .addIndicators({name: "promises-list"}) // add indicators (requires plugin);
         .on('enter leave', (event) => {
             switch(event.type) {
                 case "leave":
@@ -107,45 +107,45 @@ function initScrollMagic() {
         duration: document.querySelector('#stakeholder-success').getBoundingClientRect().height // needs to be set to the classToggle will remove the active class when scene is done.
     })
         .setClassToggle('#green', 'active')// add class
-        .addIndicators({name: "stakeholders"}) // add indicators (requires plugin)
+        // .addIndicators({name: "stakeholders"}) // add indicators (requires plugin)
         .addTo(controller);
 
-    new ScrollMagic.Scene({
+    scenes.faces = new ScrollMagic.Scene({
         triggerElement: '#trigger-stakeholder-faces',
         duration: '100%' // needs to be set to the classToggle will remove the active class when scene is done.
     })
         .setClassToggle('#stakeholder-faces', 'show')
-        .addIndicators({name: "stakeholders-faces"}) // add indicators (requires plugin)
+        // .addIndicators({name: "stakeholders-faces"}) // add indicators (requires plugin)
         .addTo(controller);
 
 
     // RELATION SCENE START
     const relationTitleTween = TweenMax.staggerTo('#relation-title > span', 0.4, { opacity: 1 }, 0.4);
 
-    new ScrollMagic.Scene({
+    scenes.relation = new ScrollMagic.Scene({
         triggerElement: '#trigger-relation',
         duration: '100%' // needs to be set to the classToggle will remove the active class when scene is done.
     })
         .setClassToggle('#blue', 'active')// add class
-        .addIndicators({name: "relation"}) // add indicators (requires plugin)
+        // .addIndicators({name: "relation"}) // add indicators (requires plugin)
         .addTo(controller);
 
-    new ScrollMagic.Scene({
+    scenes.relationTitle = new ScrollMagic.Scene({
         triggerElement: '#trigger-relation'
     })
         .setTween(relationTitleTween)
-        .addIndicators({name: "relation-title"}) // add indicators (requires plugin)
+        // .addIndicators({name: "relation-title"}) // add indicators (requires plugin)
         .addTo(controller);
 
     // RELATION SCENE END
 
     // SCENE BLANKO START
-    new ScrollMagic.Scene({
+    scenes.blanko = new ScrollMagic.Scene({
         triggerElement: '#trigger-blanko',
         duration: '100%' // needs to be set to the classToggle will remove the active class when scene is done.
     })
         .setClassToggle('#blanko', 'active')// add class
-        .addIndicators({name: "blanko"}) // add indicators (requires plugin)
+        // .addIndicators({name: "blanko"}) // add indicators (requires plugin)
         .addTo(controller);
     // SCENE BLANKO END
 }
@@ -169,7 +169,6 @@ window.onload = function() {
                     width: document.getElementsByClassName('grip-container')[0].offsetWidth,
                     height: document.getElementsByClassName('grip-container')[0].offsetHeight,
                 };
-                console.log('originalGripSize: ', originalGripSize);
 
                 // now we initialize the rest...
                 resizeGrip();
