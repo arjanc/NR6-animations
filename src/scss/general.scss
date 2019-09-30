@@ -51,7 +51,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
     font-size: 6em;
   }
   .heading3 {
-    font-size: 5.5rem;
+    font-size: 3.5rem;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -94,8 +94,10 @@ main {
       transition: opacity .8s $curve;
     }
 
+    .lightblue { background-color: #96CAE3}
     .blue { background-color: #2801CC; }
-    .green { background-color: #96CAE3; }
+    .green { background-color: #ABD6C3; }
+    .blanko { background-color: #FFFFFF; }
     .active {
       opacity: 1;
     }
