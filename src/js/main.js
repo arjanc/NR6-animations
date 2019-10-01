@@ -1,20 +1,17 @@
 import './../scss/main.scss';
+import './../fonts/BureauGrotesque-ThreeFive.eot';
+import './../fonts/BureauGrotesque-ThreeFive.svg';
+import './../fonts/BureauGrotesque-ThreeFive.ttf';
+import './../fonts/BureauGrotesque-ThreeFive.woff';
+import './../fonts/BureauGrotesque-ThreeFive.woff2';
 
 let resizeTimeout, controller, originalGripSize;
 let scenes = {};
-
-const facesMainElement = document.querySelector('#faces');
-const facesPlaceholder = document.querySelector('.faces-placeholder');
-const facesTitleElement = document.querySelector('.faces-title');
 
 const gripItems = document.querySelectorAll('.grip-item .grip-image');
 for (let i=0; i < gripItems.length; i++) {
     const floatTime = Math.floor(Math.random() * 6) + 1;
     gripItems[i].style.setProperty('--float-delay', -floatTime +'s');
-}
-
-function getFacesHeight() {
-    return (facesTitleElement.getBoundingClientRect().y + facesTitleElement.getBoundingClientRect().height) - facesMainElement.getBoundingClientRect().y + facesPlaceholder.getBoundingClientRect().height;
 }
 
 function resizeGrip() {
@@ -61,19 +58,11 @@ function initScrollMagic() {
     checkmarkTimeline.staggerTo('.promises-list-item > svg', 1, { className: '+=animated'}, 0.5, "-=2.5"); // "-=2.5 puts the start time 2.5s earlier
 
 
-    // Build scenes.
-    scenes.grip = new ScrollMagic.Scene({
-        triggerElement: '#sec1',
-    })
-        .setClassToggle('#grip-container', 'sticked') // add class
-        // .addIndicators({ name: "grip"}) // add indicators (requires plugin)
-        .addTo(controller);
-
     scenes.hero = new ScrollMagic.Scene({
-        triggerElement: '#sec2',
+       triggerElement: '#trigger-hero'
     })
-        .setClassToggle('#hero', 'nonFixed') // add class
-        // .addIndicators({ name: "hero"}) // add indicators (requires plugin)
+        .setClassToggle('#grip-container', 'sticked')
+        // .addIndicators({ name: "hero" })
         .addTo(controller);
 
     scenes.promise = new ScrollMagic.Scene({

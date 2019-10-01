@@ -2,6 +2,11 @@
     --- HERO ---
  */
 
+.trigger-hero {
+  position: absolute;
+  margin-top: 40vh;
+}
+
 .hero {
   width: 100%;
   height: 100vh;
@@ -27,16 +32,6 @@
 
 .hero.nonFixed {
   position: relative;
-  top: auto;
-  bottom: 75vh;
-}
-
-@media only screen and (max-height: 800px) {
-  .hero.nonFixed {
-    bottom: auto;
-    left: 0;
-    transform: translateY(-75%);
-  }
 }
 
 .grip-container {

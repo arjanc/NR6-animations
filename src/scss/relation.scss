@@ -38,7 +38,7 @@
 
     h2 {
       text-transform: uppercase;
-      font-family: "bureau-grot-condensed",sans-serif;
+      font-family: "BureauGrotesque", Arial, Helvetica, sans-serif;
       font-size: 2rem;
       margin: 0 0 10px 0;
       text-align: center;
@@ -47,11 +47,9 @@
       margin: 0;
     }
 
-    a {
-      margin-left: 30px;
-      &:first-of-type {
-        margin-left: 0;
-      }
+    a, a:link {
+      display:block;
+      margin: 5px 0;
     }
   }
 }
@@ -75,6 +73,14 @@
     .card-content {
       h2 {
         text-align: left;
+      }
+
+      a, a:link {
+        display: inline-block;
+        margin-left: 30px;
+        &:first-of-type {
+          margin-left: 0;
+        }
       }
     }
   }

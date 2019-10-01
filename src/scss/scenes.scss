@@ -7,19 +7,9 @@
 }
 
 .scene-1 {
-  height: 150vh;
+  height: 120vh;
   position: relative;
-
-  .spacer-1 {
-    min-height: 51vh;
-  }
-  .spacer-2 {
-    height: 50vh;
-  }
-  .spacer-3 {
-    margin-top: -25vh;
-    position: absolute;
-  }
+  padding-top: 100px;
 }
 
 .scene-2 {
@@ -60,19 +50,6 @@
 
 @media only screen and (max-height: 800px) {
   .scene {
-    &.scene-1 {
-      height: 1600px;
-
-      .spacer-1 {
-        min-height: 800px;
-      }
-      .spacer-2 {
-        height: 400px;
-      }
-    }
-    &.scene-2 {
-      //height: 1600px;
-    }
     &.scene-3 {
       min-height: 400px;
     }
