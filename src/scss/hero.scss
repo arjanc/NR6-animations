@@ -4,7 +4,12 @@
 
 .trigger-hero {
   position: absolute;
-  margin-top: 43vh;
+  margin-top: 51vh;
+}
+
+.trigger-heroscroll {
+  position: absolute;
+  margin-top: 60vh;
 }
 
 .hero {
@@ -32,6 +37,10 @@
 
 .hero.nonFixed {
   position: relative;
+  top: 60vh; // same as trigger-heroscroll
+  left: 50%;
+  bottom: 75vh;
+  transform: translate(-50%, -50%);
 }
 
 .grip-container {

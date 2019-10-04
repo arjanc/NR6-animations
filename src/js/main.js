@@ -65,6 +65,13 @@ function initScrollMagic() {
         // .addIndicators({ name: "hero" })
         .addTo(controller);
 
+    scenes.heroscroll = new ScrollMagic.Scene({
+        triggerElement: '#trigger-heroscroll'
+    })
+        .setClassToggle('#hero', 'nonFixed')
+        // .addIndicators({ name: "hero scroll" })
+        .addTo(controller);
+
     scenes.promise = new ScrollMagic.Scene({
         triggerElement: '#trigger-promise',
         duration: document.querySelector('#promise').getBoundingClientRect().height + (document.querySelector('#promise').getBoundingClientRect().top - document.querySelector('#trigger-promise').getBoundingClientRect().top) // needs to be set to the classToggle will remove the active class when scene is done.

@@ -5,6 +5,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   color: white;
   text-align: center;
   position: relative;
+  min-height: auto;
 
   .trigger-promise {
     margin-top: -25vh;
@@ -22,7 +23,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
     word-wrap: break-word;
     list-style: none;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 20px 20vh 20px;
 
     li {
       margin-bottom: 1rem;

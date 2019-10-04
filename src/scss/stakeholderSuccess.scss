@@ -5,9 +5,11 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   text-align: center;
   padding-bottom: 10vh;
   position: relative;
+  min-height: auto;
 
   .trigger-stakeholder {
     position: absolute;
+    margin-top: -10vh;
   }
 
   .trigger-stakeholder-faces {
@@ -24,6 +26,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   .stakeholder-faces-container {
     width:80%;
     margin: 0 auto;
+    padding-bottom: 20vh;
 
     @for $i from 1 through $faces {
       .face-#{$i} {
