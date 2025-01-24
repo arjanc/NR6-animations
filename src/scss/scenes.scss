@@ -6,20 +6,15 @@
   min-height: 800px;
 }
 
-.scene-1 {
-  height: 200vh;
-  position: relative;
+.scene.flex {
+  display: flex;
+  flex-direction: column;
+}
 
-  .spacer-1 {
-    min-height: 100vh;
-  }
-  .spacer-2 {
-    height: 75vh;
-  }
-  .spacer-3 {
-    margin-top: -25vh;
-    position: absolute;
-  }
+.scene-1 {
+  height: 100vh;
+  position: relative;
+  padding-bottom: 20vh;
 }
 
 .scene-2 {
@@ -60,19 +55,6 @@
 
 @media only screen and (max-height: 800px) {
   .scene {
-    &.scene-1 {
-      height: 1600px;
-
-      .spacer-1 {
-        min-height: 800px;
-      }
-      .spacer-2 {
-        height: 400px;
-      }
-    }
-    &.scene-2 {
-      //height: 1600px;
-    }
     &.scene-3 {
       min-height: 400px;
     }

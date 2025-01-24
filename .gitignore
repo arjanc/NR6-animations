@@ -9,6 +9,7 @@
 *.vi
 *~
 *.sass-cache
+*.DS_Store
 
 # OS or Editor folders
 Thumbs.db
