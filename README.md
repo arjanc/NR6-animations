@@ -15,3 +15,15 @@ $ yarn dev
 ```
 $ yarn build
 ```
+
+# Run with Docker
+
+###build
+```
+docker build -t nr6-animations .
+```
+
+### Run container
+```
+docker run -p 8080:1234 nr6-animations
+```
