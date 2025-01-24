@@ -18,7 +18,7 @@ $ yarn build
 
 # Run with Docker
 
-###build
+### build
 ```
 docker build -t nr6-animations .
 ```
