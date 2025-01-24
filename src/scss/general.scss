@@ -117,3 +117,10 @@ main.blue {
 main.green {
   background-color: #96CAE3;
 }
+
+.wrapper.centered {
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

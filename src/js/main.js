@@ -5,8 +5,22 @@ import './../fonts/BureauGrotesque-ThreeFive.ttf';
 import './../fonts/BureauGrotesque-ThreeFive.woff';
 import './../fonts/BureauGrotesque-ThreeFive.woff2';
 
-let resizeTimeout, controller, originalGripSize;
+let resizeTimeout, controller, originalGripSize, scene4, faceCoordinates, facesMainElement, facesContainerElement, facesPlaceholder, facesTitleElement;
 let scenes = {};
+
+function getFacesHeight() {
+    const xTop = facesTitleElement.getBoundingClientRect().y | facesTitleElement.getBoundingClientRect().top;
+    const xHeight = facesTitleElement.getBoundingClientRect().height;
+    const yTop = facesMainElement.getBoundingClientRect().y | facesMainElement.getBoundingClientRect().top;
+    const yHeight = facesPlaceholder.getBoundingClientRect().height;
+
+    return (xTop + xHeight) - yTop + yHeight;
+}
+
+
+function getScene4Duration() {
+    return getFacesHeight() - (facesPlaceholder.getBoundingClientRect().height * 1.5);
+}
 
 const gripItems = document.querySelectorAll('.grip-item .grip-image');
 for (let i=0; i < gripItems.length; i++) {
@@ -45,6 +59,14 @@ function handleResize() {
         resizeGrip();
         resizeScenesDurations();
         controller.update(true);
+
+        // Resize faces container.
+        const newFacesHeight = getFacesHeight();
+
+        facesContainerElement.style.height = `${newFacesHeight}px`;
+        facesContainerElement.querySelector('svg').setAttribute('viewBox', `0 0 823 ${newFacesHeight}`);
+
+        scene4.duration(`${getScene4Duration()}px`);
     });
 }
 
@@ -70,6 +92,65 @@ function initScrollMagic() {
     })
         .setClassToggle('#hero', 'nonFixed')
         // .addIndicators({ name: "hero scroll" })
+        .addTo(controller);
+
+    new ScrollMagic.Scene({
+        triggerElement: '#sec3',
+    })
+        .setClassToggle('#faces', 'show') // add class
+        .addTo(controller);
+    
+    new ScrollMagic.Scene({
+        triggerElement: '#sec3',
+    })
+        .setClassToggle('#main', 'blue') // add class
+        .addTo(controller);
+
+    scene4 = new ScrollMagic.Scene({
+        triggerElement: '#sec4',
+        duration: `${getScene4Duration()}px`,
+    })
+        .setClassToggle('#faces-2', 'fixed') // add classes
+        .on('update', (event) => {
+            switch(event.type) {
+                case 'update':
+
+                    // calculate total distance to face-title is visible
+                    const faceYDifference = document.querySelector('.faces-container').getBoundingClientRect().height - (document.querySelector('.faces-placeholder').getBoundingClientRect().height * 1.5);
+                    const scale = 823 / document.querySelector('.faces-placeholder').getBoundingClientRect().width;
+
+                    let percent = 100 / (event.endPos - event.startPos) * (event.scrollPos - event.startPos);
+
+                    if (percent < 0) {
+                        // reset coordinates of faces
+                        faceCoordinates.map((face) => {
+                            face.element.setAttribute('x', face.x);
+                            face.element.setAttribute('y', face.y);
+                            face.element.querySelector('.face').removeAttribute('style');
+                        });
+                    }
+                    if (percent >= 0) {
+                        if (percent > 100) {
+                            percent = 100;
+                        }
+
+                        faceCoordinates.map((face) => {
+                            const positionX = face.x + (((face.endX - face.x) / 100) * percent);
+                            const positionY = face.y + (((face.endY + (faceYDifference * scale) - face.y) / 100) * percent);
+                            face.element.setAttribute('x', positionX);
+                            face.element.setAttribute('y', positionY);
+                            if (face.endRotate !== 0) {
+                                face.element.querySelector('.face').setAttribute('style', `transform: rotate(${(face.endRotate / 100) * percent}deg); transition-delay: 0; transition: none;`);
+                            }
+
+                        });
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+        })
         .addTo(controller);
 
     scenes.promise = new ScrollMagic.Scene({
@@ -147,6 +228,86 @@ function initScrollMagic() {
 }
 
 window.onload = function() {
+
+    facesMainElement = document.querySelector('#faces');
+    facesContainerElement = document.querySelector('.faces-container');
+    facesPlaceholder = document.querySelector('.faces-placeholder');
+    facesTitleElement = document.querySelector('.faces-title');
+
+    faceCoordinates = [
+        {
+            element: document.getElementById('face3'),
+            x: 132,
+            y: 361,
+            endX: 108,
+            endY: 390,
+            endRotate: 37,
+        },
+        {
+            element: document.getElementById('face5'),
+            x: 653,
+            y: 173,
+            endX: 467,
+            endY: 390,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face9'),
+            x: 583,
+            y: 321,
+            endX: 583,
+            endY: 321,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face11'),
+            x: 256,
+            y: 126,
+            endX: 292,
+            endY: 458,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face13'),
+            x: 454,
+            y: 9,
+            endX: -23,
+            endY: 368,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face14'),
+            x: 127,
+            y: 119,
+            endX: 641,
+            endY: 434,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face15'),
+            x: 330,
+            y: -13,
+            endX: 244,
+            endY: 368,
+            endRotate: 0,
+        },
+        {
+            element: document.getElementById('face16'),
+            x: 345,
+            y: 444,
+            endX: 382,
+            endY: 378,
+            endRotate: -26,
+        },
+        {
+            element: document.getElementById('face18'),
+            x: 478,
+            y: 401,
+            endX: 699,
+            endY: 320,
+            endRotate: 0,
+        },
+    ];
 
     const gripImages = document.querySelectorAll('.grip-item img');
     let imagesLoaded = 0;
