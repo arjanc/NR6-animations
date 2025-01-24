@@ -27,7 +27,9 @@ nbproject
 intermediate
 publish
 build
+dist
 public
+
 
 # Editors
 *.sublime*
