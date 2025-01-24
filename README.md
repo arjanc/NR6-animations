@@ -27,3 +27,18 @@ docker build -t nr6-animations .
 ```
 docker run -p 8080:1234 nr6-animations
 ```
+
+## Or with docker compose
+```
+docker compose build
+```
+```
+docker compose up
+```
+
+stopping
+```
+docker compose down
+```
+
+Open [http://localhost:8080/](http://localhost:8080/)
